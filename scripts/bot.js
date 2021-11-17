@@ -78,7 +78,7 @@ module.exports = function (bot) {
     bot.respond(/What was the best dinner party you ever went to?/i, function (msg){
         return msg.send(`The Office Season 4 Episode 13.`);
     })
-    bot.respond(/vegetarian/i, async function(msg){
+    bot.respond(/veggie/i, async function(msg){
         let vegMeal = await veggieMeals();
         console.log(vegMeal);
         let vegRecipeName = vegMeal.strMeal;
@@ -86,7 +86,7 @@ module.exports = function (bot) {
         return msg.reply(`For your vegetarian guests, try serving ${vegRecipeName} \n${vegRecipePic}`);
     })
     bot.hear(/vegetarian/i, function(res){
-        res.send(`Oh you need vegetarian options? That's fine! Just say, "@sammie-bot vegetarian" and I'll give you an idea.`);
+        res.send(`Oh you need vegetarian options? That's fine! Just say, "@sammie-bot veggie" and I'll give you an idea.`);
     })
     bot.respond(/Hi my name is (.*)/i, function (msg){
         let name;

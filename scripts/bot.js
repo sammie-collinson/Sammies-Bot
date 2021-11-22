@@ -30,8 +30,6 @@ module.exports = function (bot) {
         let secondIngredient = cocktails.strIngredient2;
         let thirdIngredient = cocktails.strIngredient3;
         let picture = cocktails.strDrinkThumb;
-        console.log(cocktailName);
-        console.log(cocktails);
         return res.send(`Why don't you try a ${cocktailName}? Ingredients include: ${firstIngredient}, ${secondIngredient}, ${thirdIngredient}. ${picture}`);
     })
     bot.hear(/bored/i, function (res){
@@ -41,17 +39,14 @@ module.exports = function (bot) {
         let recipes = await getRecipes();
         let mealName = recipes.strMeal;
         let mealVideo = recipes.strYoutube;
-        console.log(mealName);
-        console.log(recipes);
         return res.send(`Try serving up ${mealName}! Instructions on how to make this can be found at this video: ${mealVideo}`);
     })
     bot.hear(/\!games/i, function (res){
         return res.send(`How many players do you have? Respond with '# players'`);
     })
     bot.hear(/(.*) players/i, function (res){
-        let num
-        num = parseInt(res.match[0])
-        console.log(num);
+        let num;
+        num = parseInt(res.match[0]);
         if (num < 3){
             return res.send(`Ah, a small get together I see! Try playing Taco vs. Burrito. \nhttps://www.amazon.com/Taco-Burrito-Popular-Surprisingly-Strategic/dp/B07JZTBV9C`);
         } else if (num >= 3 && num < 6){
@@ -61,9 +56,8 @@ module.exports = function (bot) {
         }
     })
     bot.respond(/What is your favorite (.*)?\?/i, function(msg){
-        let fav
-        fav = msg.match[1]
-        console.log(fav);
+        let fav;
+        fav = msg.match[1];
         switch (fav) {
             case 'food':
                 return msg.reply(`I do love it when Jeff Bezos lets me taste his dinner to see if it is poisoned`);
@@ -80,7 +74,6 @@ module.exports = function (bot) {
     })
     bot.respond(/veggie/i, async function(msg){
         let vegMeal = await veggieMeals();
-        console.log(vegMeal);
         let vegRecipeName = vegMeal.strMeal;
         let vegRecipePic = vegMeal.strMealThumb;
         return msg.reply(`For your vegetarian guests, try serving ${vegRecipeName} \n${vegRecipePic}`);
@@ -102,7 +95,6 @@ module.exports = function (bot) {
     })
     bot.respond(/zero proof/i, async function(msg){
         let sober = await nonAlcoholic();
-        console.log(sober);
         let mocktailName = sober.strDrink;
         let mocktailPic = sober.strDrinkThumb;
         return msg.reply(`Sip on a ${mocktailName}! \n${mocktailPic}`);
@@ -116,7 +108,6 @@ module.exports = function (bot) {
     })
     bot.respond(/give me a random dinner and drink combo/i, async function(msg){
         let randomDinner = await getRecipes();
-        console.log(randomDinner);
         let randomMealName = randomDinner.strMeal;
         let randomMealPic = randomDinner.strMealThumb;
         let randomDrink = await getCocktails();
